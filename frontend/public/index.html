@@ -1,0 +1,116 @@
+<!-- index.html - Main entry point for SPA frontend -->
+<!-- Contains tab structure, panels, and links to scripts/styles -->
+ 
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CEDT Buddy — Conversation Chatbot (SPA)</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <div style="margin-bottom:10px">
+    <label>User ID: <span id="userUidBox" style="background:#eee; color:#333; font-size:0.95em; padding:2px 8px; border-radius:4px;"></span></label>
+  </div>
+  <header class="topbar">
+     <div class="brand"><img src="./assets/logo.png" alt="Logo" style="height:3em; vertical-align:middle; margin-right:0.4em;">CEDT Buddy</div>
+    <div class="controls">
+      <button id="modeToggle" class="btn">🌙/☀️</button>
+    </div>
+  </header>
+
+  <main id="app">
+    <nav class="tabs">
+      <button class="tab active" data-target="chat">Chat</button>
+      <button class="tab" data-target="faq">FAQs</button>
+      <button class="tab" data-target="sources">Sources</button>
+      <button class="tab" data-target="feedback">Feedback</button>
+      <button class="tab" data-target="about">About</button>
+    </nav>
+
+    <section id="chat" class="view active">
+      <div id="chatHistory" class="chat-history"></div>
+      <div class="chat-input">
+        <textarea id="userInput" rows="2" placeholder="พิมพ์ถามได้เลย~ (Always-on chat)"></textarea>
+        <button id="sendBtn" class="btn primary">Send</button>
+      </div>
+    </section>
+
+    <section id="faq" class="view">
+      <h2>FAQs</h2>
+      <div id="faqList" class="list"></div>
+  <details class="panel" id="faqAdminPanel">
+        <summary>+ Add / Update FAQ</summary>
+        <label>Admin Token <input id="adminToken_faq" type="password" placeholder="ADMIN_TOKEN (optional demo guard)"></label>
+        <label>Question <input id="faqQ" placeholder="Question"></label>
+        <label>Answer <textarea id="faqA" placeholder="Answer"></textarea></label>
+        <label>ID (for update) <input id="faqId" placeholder="Leave blank to create"></label>
+        <div class="row">
+          <button id="faqCreateBtn" class="btn primary">Create</button>
+          <button id="faqUpdateBtn" class="btn">Update</button>
+        </div>
+      </details>
+    </section>
+
+    <section id="sources" class="view">
+      <h2>Sources</h2>
+      <p>เพิ่มลิงก์ PDF / DOCX / GDrive / web notes ที่เกี่ยวข้องกับคอร์ส—บอทจะใช้เป็น context 🔗</p>
+      <div id="sourcesList" class="list"></div>
+  <details class="panel" id="sourcesAdminPanel">
+        <summary>+ Add / Update Source</summary>
+        <label>Admin Token <input id="adminToken_sources" type="password" placeholder="ADMIN_TOKEN (optional demo guard)"></label>
+        <label>URL <input id="srcUrl" placeholder="https://..."></label>
+        <label>Note <input id="srcNote" placeholder="short note (optional)"></label>
+        <label>Context <textarea id="srcContext" placeholder="Context for bot (optional)"></textarea></label>
+        <label>ID (for update) <input id="srcId" placeholder="Leave blank to create"></label>
+        <div class="row">
+          <button id="srcCreateBtn" class="btn primary">Create</button>
+          <button id="srcUpdateBtn" class="btn">Update</button>
+        </div>
+      </details>
+    </section>
+
+    <section id="feedback" class="view">
+      <h2>Give Feedback</h2>
+      <div class="stars" id="stars">
+        <span data-val="1">★</span><span data-val="2">★</span><span data-val="3">★</span><span data-val="4">★</span><span data-val="5">★</span>
+      </div >
+      <label>Your name (optional) <input id="fbName" placeholder="What should we call you?" /></label>
+      <label>Comment <textarea id="fbComment" placeholder="What should we improve?"></textarea></label>
+      <button id="fbSend" class="btn primary">Submit</button>
+
+      <div id="feedbackList" class="list small"></div>
+    </section>
+
+    <section id="about" class="view">
+      <h2>About this project</h2>
+      <ul>
+        <li>Vanilla JS SPA, Gen‑Z UI, light/dark toggle</li>
+        <li>Split frontend/backend for easy edits</li>
+        <li>CRUD: FAQs, Sources, Feedback</li>
+        <li>Chat uses OpenAI via backend; context from FAQs/Sources</li>
+        <li>Edit <code>config.js</code> to point to your backend IPv4 & tokens</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="foot">© 2025 CEDT Buddy</footer>
+
+  <!-- Credits Section -->
+    <footer class="footer">
+      <hr>
+        <div style="text-align:center; font-size:0.95em; color:#fff; margin-top:10px;">
+          Project by Group17.<br>
+          Punnapaht S. / Pitichod J. / Thitisan L. / Chawiss S. / Narawin C. / Puttisan K.
+        </div>
+
+      <div style="text-align:center; font-size:0.95em; color:#666; margin-top:10px;">
+        <!-- Special thanks to CEDT, OpenAI, Google Gemini, and all contributors.<br> -->
+        <!-- Icons by <a href="https://emojipedia.org/" target="_blank">Emojipedia</a>. Source code licensed MIT. -->
+      </div>
+    </footer>
+
+  <script type="module" src="./scripts/main.js"></script>
+</body>
+</html>
